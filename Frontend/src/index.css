@@ -1,0 +1,13 @@
+/* Estilos globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway';
+  background-color: #ffffff; /* Fondo blanco */
+  color: #6B7280; /* Texto gris suave */
+}
+
