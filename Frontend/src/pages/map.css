@@ -1,0 +1,10 @@
+/* Estilos básicos para el mapa */
+.map-container {
+  width: 100%;
+  height: 100%; /* Asegúrate de que el contenedor tenga altura */
+  background-color: #e0e0e0; /* Color de fondo si no se carga el mapa */
+  border: 1px solid #ccc;
+}
+
+/* Puedes agregar más estilos específicos aquí */
+

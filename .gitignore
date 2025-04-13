@@ -1,5 +1,9 @@
+
 # Node modules
-node_modules/
+Frontend/node_modules/
+
+# Variables de entorno (No subas el archivo .env)
+.env
 
 # Archivos de log
 npm-debug.log

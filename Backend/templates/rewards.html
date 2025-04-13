@@ -6,13 +6,21 @@
     <title>Premios Disponibles</title>
     <style>
         body {
-            font-family: Raleway;
+            font-family: Raleway, sans-serif;
             background-color: #e0f7fa;
             text-align: center;
             padding-top: 50px;
         }
         h1 {
             color: #00796b;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            font-size: 18px;
         }
         .btn {
             background-color: #00796b;
@@ -22,7 +30,9 @@
             cursor: pointer;
             font-size: 16px;
             border-radius: 5px;
-            margin-top: 20px;
+            margin-top: 30px;
+            text-decoration: none;
+            display: inline-block;
         }
         .btn:hover {
             background-color: #004d40;
@@ -32,13 +42,14 @@
 <body>
     <h1>Premios disponibles por reciclar</h1>
     <p>¡Recicla más para obtener más premios!</p>
+
     <ul>
-        <li>1 canguro de ecocuero - 100 monedas</li>
-        <li>1 bolso porteño de ecocuero - 200 monedas</li>
-        <li>1 mochila de ecocuero - 500 monedas</li>
+        <li>🥇 1 canguro de ecocuero - 100 monedas</li>
+        <li>🥈 1 bolso porteño de ecocuero - 200 monedas</li>
+        <li>🏆 1 mochila de ecocuero - 500 monedas</li>
     </ul>
-    <a href="/home"><button class="btn">Volver a la página 
-principal</button></a>
+
+    <a href="{{ url_for('home') }}" class="btn">Volver a la página principal</a>
 </body>
 </html>
 

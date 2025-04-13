@@ -1,13 +1,59 @@
-/* Estilos globales */
+/* General reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Asegura que todo el contenido sea fluido y no se desborde */
+html, body {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Cuerpo principal */
 body {
-  font-family: 'Raleway';
-  background-color: #ffffff; /* Fondo blanco */
-  color: #6B7280; /* Texto gris suave */
+  background-color: #f4f4f4;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo para las páginas de Builder.io */
+div {
+  display: block;
+  width: 100%;
+  max-width: 1200px;  /* Puedes ajustar este tamaño según lo que necesites */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+}
+
+/* Estilos específicos para Builder.io */
+.builder-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Ajusta los márgenes y tamaños */
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Agregar transiciones suaves para los componentes */
+* {
+  transition: all 0.3s ease;
 }
 

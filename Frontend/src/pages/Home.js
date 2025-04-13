@@ -1,28 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BuilderComponent } from '@builder.io/react';
 
 const Home = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-r from-white via-[#f58d38] to-[#69a84a]">
-      {/* Header - Saludo */}
-      <div className="text-center py-12">
-        <h1 className="text-4xl font-bold text-white">Bienvenid@ al mundo Beland 🌎</h1>
-      </div>
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
-      {/* Botones en el medio */}
-      <div className="flex justify-center space-x-6 mb-12">
-        <Link
-          to="/video"
-          className="bg-white text-[#69a84a] font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#f58d38] hover:text-white transition duration-300"
-        >
-          Ver Video
-        </Link>
-        <Link
-          to="/home"
-          className="bg-white text-[#69a84a] font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#f58d38] hover:text-white transition duration-300"
-        >
-          Mis Videos
-        </Link>
+  const closeLoginModal = () => setLoginModalOpen(false);
+
+  return (
+    <div>
+      {/* Botón "Mis Premios" */}
+      <div className="text-center mb-8">
         <Link
           to="/rewards"
           className="bg-white text-[#69a84a] font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#f58d38] hover:text-white transition duration-300"
@@ -31,9 +19,19 @@ const Home = () => {
         </Link>
       </div>
 
-      {/* Línea de separación entre el cuerpo y el footer */}
+      {/* Botón "Ver Mapa" */}
+      <div className="text-center mb-12 mt-8">
+        <Link
+          to="/map"
+          className="bg-white text-[#69a84a] font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#f58d38] hover:text-white transition duration-300"
+        >
+          Ver Mapa
+        </Link>
+      </div>
+  
+      {/* Línea de separación */}
       <hr className="border-t-2 border-[#f58d38] mb-12" />
-
+  
       {/* Footer */}
       <div className="flex justify-between items-center px-8 py-6 bg-white">
         <div className="flex justify-center w-full">
@@ -45,9 +43,26 @@ const Home = () => {
           <p className="text-gray-600">Tel: +123 456 789</p>
         </div>
       </div>
+  
+      {/* Modal de Login */}
+      {isLoginModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          {/* Renderizar el modal de Builder.io */}
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+            <button  
+              onClick={closeLoginModal}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+            >
+              ✕
+            </button>
+            <BuilderComponent model="login-modal" />
+            {/* Aquí 'login-modal' es el nombre de tu modelo en Builder.io */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-
+          
 export default Home;
 

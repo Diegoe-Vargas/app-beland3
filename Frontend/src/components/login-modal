@@ -1,0 +1,48 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/authContext';
+import Home from './pages/Home';
+import Rewards from './pages/Rewards';
+import Map from './pages/Map';
+import Contact from './pages/Contact';
+import Blog from './pages/Blog';
+import NotFound from './pages/NotFound';
+
+const PrivateRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/" />;
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route 
+            path="/rewards" 
+            element={
+              <PrivateRoute>
+                <Rewards />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/map" 
+            element={
+              <PrivateRoute>
+                <Map />
+              </PrivateRoute>
+            } 
+          />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+export default App;
+

@@ -6,7 +6,7 @@
     <title>Ver Video Reciclado</title>
     <style>
         body {
-            font-family: Raleway;
+            font-family: Raleway, sans-serif;
             background-color: #e0f7fa;
             text-align: center;
             padding-top: 50px;
@@ -28,6 +28,8 @@
             font-size: 16px;
             border-radius: 5px;
             margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
         }
         .btn:hover {
             background-color: #004d40;
@@ -37,13 +39,11 @@
 <body>
     <h1>¡Aquí está tu video reciclado!</h1>
     <video controls>
-        <source src="static/videos/tu_video_reciclado.mp4" 
-type="video/mp4">
+        <source src="{{ url_for('static', filename='videos/tu_video_reciclado.mp4') }}" type="video/mp4">
         Tu navegador no soporta el elemento de video.
     </video>
     <br>
-    <a href="/home"><button class="btn">Volver a la página 
-principal</button></a>
+    <a href="{{ url_for('home') }}" class="btn">Volver a la página principal</a>
 </body>
 </html>
 
