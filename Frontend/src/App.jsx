@@ -9,8 +9,9 @@ function BuilderPage() {
   const [content, setContent] = useState(null);
 
   useEffect(() => {
+    console.log("📍 Cargando ruta:", location.pathname);
     builder
-      .get('page', { url: location.pathname }) // 👈 clave para rutas dinámicas
+      .get('page', { url: location.pathname })
       .toPromise()
       .then((data) => setContent(data));
   }, [location.pathname]);
@@ -19,9 +20,7 @@ function BuilderPage() {
     return (
       <div style={{ textAlign: 'center', padding: '2rem' }}>
         <h2>😕 Página no encontrada</h2>
-        <p>
-          No hay contenido en Builder.io para: <code>{location.pathname}</code>
-        </p>
+        <p>No hay contenido publicado en Builder.io para: <code>{location.pathname}</code></p>
       </div>
     );
   }
