@@ -10,15 +10,20 @@ function BuilderPage() {
 
   useEffect(() => {
     builder
-      .get('page', { url: location.pathname }) // 👈 ahora sí usa la ruta real
+      .get('page', { url: location.pathname }) // 👈 clave para rutas dinámicas
       .toPromise()
-      .then((data) => {
-        setContent(data);
-      });
+      .then((data) => setContent(data));
   }, [location.pathname]);
 
   if (!content) {
-    return <div>No se encontró contenido para esta URL 😕</div>;
+    return (
+      <div style={{ textAlign: 'center', padding: '2rem' }}>
+        <h2>😕 Página no encontrada</h2>
+        <p>
+          No hay contenido en Builder.io para: <code>{location.pathname}</code>
+        </p>
+      </div>
+    );
   }
 
   return <BuilderComponent model="page" content={content} />;
@@ -28,7 +33,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* 👇 Ruta comodín para cualquier página */}
         <Route path="*" element={<BuilderPage />} />
       </Routes>
     </Router>
