@@ -1,28 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { BuilderComponent } from '@builder.io/react';
-import { builder } from '@builder.io/react';
-import './styles.css';  // Asegúrate de tener los estilos correctos cargados.
+import React, { useEffect, useState } from 'react';
+import { builder, BuilderComponent } from '@builder.io/react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-builder.init('ed5c41e69f62495eb1d85113a14c01c8'); // Asegúrate de usar la API Key correcta.
+builder.init(process.env.REACT_APP_BUILDER_API_KEY);
 
-function App() {
+function BuilderPage() {
+  const location = useLocation();
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    builder
+      .get('page', { url: location.pathname })
+      .toPromise()
+      .then((data) => setContent(data));
+  }, [location.pathname]);
+
+  if (!content) {
+    return <h2>No hay contenido para {location.pathname}</h2>;
+  }
+
+  return <BuilderComponent model="page" content={content} />;
+}
+
+export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<BuilderPage model="home" />} />
-        <Route path="/login-modal" element={<BuilderPage model="login-modal" />} />
+        <Route path="*" element={<BuilderPage />} />
       </Routes>
     </Router>
   );
 }
-
-const BuilderPage = ({ model }) => {
-  return (
-    <div>
-      <BuilderComponent model={model} />
-    </div>
-  );
-};
-
-export default App;
 
