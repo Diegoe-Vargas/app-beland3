@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { builder, BuilderComponent } from '@builder.io/react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-builder.init(process.env.REACT_APP_BUILDER_API_KEY); // clave segura desde .env
+builder.init(process.env.REACT_APP_BUILDER_API_KEY);
 
-function App() {
+function BuilderPage() {
+  const location = useLocation();
   const [content, setContent] = useState(null);
 
   useEffect(() => {
     builder
-      .get('page', { url: window.location.pathname }) // busca contenido según la URL
+      .get('page', { url: location.pathname }) // 👈 ahora sí usa la ruta real
       .toPromise()
       .then((data) => {
         setContent(data);
       });
-  }, []);
+  }, [location.pathname]);
 
   if (!content) {
-    return (
-      <div style={{ textAlign: 'center', padding: '2rem' }}>
-        <h2>🚧 Página no encontrada</h2>
-        <p>Asegurate de tener una página publicada en Builder.io con la URL: <code>{window.location.pathname}</code></p>
-      </div>
-    );
+    return <div>No se encontró contenido para esta URL 😕</div>;
   }
 
   return <BuilderComponent model="page" content={content} />;
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* 👇 Ruta comodín para cualquier página */}
+        <Route path="*" element={<BuilderPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
